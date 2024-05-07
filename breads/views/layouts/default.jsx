@@ -1,3 +1,8 @@
+<head>
+  <!-- normalize & skeleton links -->
+  <link rel="stylesheet" href="/main.css" />
+</head>
+
 const React = require('react')
 
 function Default(html) {
