@@ -1,5 +1,7 @@
-// Dependencies
+ // Dependencies
 const express = require('express')
+const methodOverride = require('method-override')
+const mongoose = require('mongoose')
 
 // Config
 require('dotenv').config()
@@ -12,7 +14,12 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 
+// Connection to Mongo
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('connected to mongo:', process.env.MONGO_URI))
+  .catch(err => console.error('connection error:', err));
 
 // Routes
 app.get('/', (req, res) => {
